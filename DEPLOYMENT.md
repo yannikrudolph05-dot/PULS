@@ -1,64 +1,61 @@
-# PULS online stellen (GitHub Pages) – Schritt für Schritt
+# PULS online stellen – der einfache Weg (GitHub Desktop, ohne Terminal)
 
-Die App wird mit dem Paket **gh-pages** veröffentlicht. Die Werkzeuge sind schon
-eingerichtet: in `package.json` gibt es den Befehl `npm run deploy`, und das
-lokale Git-Repo mit erstem Commit ist bereits angelegt.
+Du brauchst **kein Git-Wissen und kein Terminal**. Eine GitHub-Action baut die
+Seite automatisch, sobald du in GitHub Desktop auf „Push" klickst.
 
-Es fehlen nur noch: ein GitHub-Repo, einmalig verbinden, dann veröffentlichen.
+> Wichtig: **Nicht** „Create a New Repository" benutzen – das legt ein leeres
+> Projekt an der falschen Stelle an. Dein fertiges Projekt liegt schon hier und
+> ist ein Git-Repo:
+> `/Users/yannikrudolph/Mailvorlagen_CC/stoerungsmelder`
 
 ---
 
-## 1. GitHub-Repo anlegen (im Browser, einmalig)
-1. Auf **https://github.com** einloggen → oben rechts **+** → **New repository**.
-2. **Repository name**: z. B. `puls` (klein, ohne Leerzeichen).
-3. **Public** auswählen.
-4. **Keine** Häkchen bei „Add a README/.gitignore/license" (das Projekt bringt alles mit).
-5. **Create repository**. GitHub zeigt dir danach die Repo-Adresse, z. B.
-   `https://github.com/DEIN-NAME/puls.git`.
+## 1. Projekt in GitHub Desktop öffnen (einmalig)
+1. Falls noch offen: den Dialog „Create a New Repository" mit **Cancel** schließen.
+2. Oben links **Current Repository** anklicken → Button **Add** → **Add Existing
+   Repository…**
+3. Bei **Local Path** auf **Choose…** und diesen Ordner wählen:
+   `Mailvorlagen_CC/stoerungsmelder`
+   → **Add Repository**.
 
-## 2. Projekt mit dem Repo verbinden (Terminal, einmalig)
-Im Projektordner `stoerungsmelder` (ersetze NAME und REPO durch deine Werte):
-```
-git remote add origin https://github.com/NAME/REPO.git
-git push -u origin main
-```
-> Beim ersten `push` fragt GitHub nach Anmeldung. Als „Passwort" wird **kein**
-> Passwort akzeptiert, sondern ein **Personal Access Token** (GitHub → Settings →
-> Developer settings → Tokens). Alternativ einmalig die GitHub-Browser-Anmeldung
-> bestätigen, wenn sie erscheint.
+Jetzt zeigt GitHub Desktop oben „Current Repository: stoerungsmelder" und es gibt
+schon Commits (von mir vorbereitet).
 
-## 3. Veröffentlichen
-```
-npm run deploy
-```
-Das baut die App (`predeploy` läuft automatisch) und schiebt den fertigen
-`dist/`-Ordner auf den Branch **gh-pages**.
+## 2. Auf GitHub veröffentlichen (einmalig)
+1. Oben den blauen Button **Publish repository** klicken.
+2. **Name**: `PULS`
+3. Häkchen **„Keep this code private"** entfernen (es soll öffentlich sein).
+4. **Publish Repository**.
 
-## 4. GitHub Pages einschalten (im Browser, einmalig)
-Repo öffnen → **Settings** → links **Pages** →
-- **Source**: „Deploy from a branch"
-- **Branch**: `gh-pages` / `(root)` → **Save**.
+GitHub Desktop lädt alles hoch (du bist schon als *yannikrudolph05-dot*
+angemeldet, also keine extra Anmeldung nötig).
 
-Nach ~1 Minute ist die Seite online unter:
-```
-https://NAME.github.io/REPO/
-```
+## 3. GitHub Pages auf „Actions" stellen (einmalig, im Browser)
+1. Auf **github.com** dein neues Repo **PULS** öffnen.
+2. Oben **Settings** → links **Pages**.
+3. Bei **Source** „**GitHub Actions**" auswählen.
 
-## 5. Später aktualisieren
-Nach Änderungen am Code einfach erneut:
-```
-npm run deploy
-```
-(Optional vorher den Quellcode sichern: `git add -A && git commit -m "..." && git push`.)
+## 4. Die Automatik einmal laufen lassen
+- Gehe im Repo auf den Tab **Actions** → links „Deploy to GitHub Pages" →
+  rechts **Run workflow** (oder einfach 1 Minute warten; beim Veröffentlichen
+  startet sie meist schon von selbst).
+- Wenn der grüne Haken erscheint, ist die Seite online unter:
+  ```
+  https://yannikrudolph05-dot.github.io/PULS/
+  ```
+
+## Ab jetzt: Updates ganz einfach
+Wenn ich später etwas ändere, machst du in **GitHub Desktop** nur:
+**Commit** (unten links Text eingeben → „Commit to main") → oben **Push origin**.
+Die Action baut und veröffentlicht die neue Version automatisch. Fertig.
 
 ---
 
 ## Falls die Seite weiß bleibt
-Dann liegt es an der Pfad-Einstellung. In `vite.config.js` `base: "./"` ersetzen
-durch `base: "/REPO/"` (mit deinem Repo-Namen), dann `npm run deploy` erneut.
+Dann an der Pfad-Einstellung drehen: in `vite.config.js` `base: "./"` ersetzen
+durch `base: "/PULS/"`, committen, pushen.
 
-## Tipp
-Die `gh`-CLI (GitHub-Kommandozeile) ist auf deinem Rechner nicht installiert.
-Du brauchst sie nicht – aber falls du die GitHub-Anmeldung einfacher haben
-möchtest, kannst du sie später von **https://cli.github.com** installieren und
-mit `gh auth login` einmalig anmelden.
+## Alternative (nur falls du es doch über Terminal willst)
+Im Projektordner einmalig `npm run deploy` (nutzt das Paket `gh-pages`). Dann in
+den Pages-Einstellungen Source = Branch `gh-pages`. Der Actions-Weg oben ist aber
+einfacher und empfohlen.
