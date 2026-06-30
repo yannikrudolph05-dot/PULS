@@ -1,0 +1,17 @@
+/* Minimaler globaler Stil. Das eigentliche Aussehen kommt aus dem GWS-Cockpit-
+   Design, das in theme.js / ui.jsx definiert ist (Inline-Styles je Komponente). */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button {
+  font-family: inherit;
+}

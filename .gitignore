@@ -1,0 +1,9 @@
+# Abhängigkeiten (werden mit "npm install" erzeugt – gehören nicht ins Repo)
+node_modules
+
+# Build-Ergebnis (wird mit "npm run build" erzeugt)
+dist
+
+# Logs & System
+*.log
+.DS_Store

@@ -1,0 +1,24 @@
+{
+  "name": "stoerungsmelder",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "GWS Cockpit – Störungsmelder (Prototyp). Vite + React.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "gh-pages": "^6.2.0",
+    "vite": "^6.0.7"
+  }
+}
