@@ -69,7 +69,7 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", background: C.pageBg, minHeight: "100vh", color: TEXT }}>
-      <Header view={view} setView={setView} role={role} onSwitchRole={switchRole} />
+      <Header view={view} setView={setView} role={role} onSwitchRole={switchRole} data={data} notify={notify} />
 
       <div style={{ maxWidth: 1180, margin: "0 auto", padding: "18px 20px 60px" }}>
         <DemoBanner />

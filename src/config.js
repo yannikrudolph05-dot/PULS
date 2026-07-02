@@ -19,7 +19,7 @@ export const APP_PARENT = "GWS Cockpit";
 //  Demo-Modus: Meldungen werden trotzdem angelegt, es wird nur keine echte
 //  E-Mail verschickt (kein Absturz).
 export const EMAILJS = {
-  SERVICE_ID: "service_db3h1jp", // z. B. "service_ab12cde"
+  SERVICE_ID: "service_mt3i4id", // z. B. "service_ab12cde"
   TEMPLATE_ID: "template_wm9s4kr", // z. B. "template_xy34fgh"
   PUBLIC_KEY: "dlj8fN2hDYmiG6spg", // z. B. "AbCdEfGhIjKlMnOp"
 };

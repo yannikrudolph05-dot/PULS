@@ -14,9 +14,11 @@ export default function DemoBanner() {
         marginBottom: 14,
       }}
     >
-      Prototyp – alle Meldungen sind erfundene Demo-Daten. Datenhaltung im Browser
-      (localStorage), keine SharePoint-Anbindung. Die Datenschicht ist für eine
-      spätere SharePoint-Integration vorbereitet.
+      Prototyp – die meisten Meldungen sind erfundene Demo-Daten; einige „Undichte
+      Blister"-Fälle bei LS3 sind anonymisierte echte Fälle (Lot-Nr. ersetzt, PM/
+      Zeiten/Dauer real) zur Veranschaulichung der Statistik. Datenhaltung im
+      Browser (localStorage), keine SharePoint-Anbindung. Die Datenschicht ist für
+      eine spätere SharePoint-Integration vorbereitet.
     </div>
   );
 }

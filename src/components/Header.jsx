@@ -1,10 +1,11 @@
 import React from "react";
 import { C } from "../theme.js";
 import { canCreate, APP_NAME, APP_PARENT } from "../config.js";
+import Backup from "./Backup.jsx";
 
 // Kopfzeile im GWS-Cockpit-Stil: Titel links, Navigation mittig, rechts die
 // aktuelle Rolle samt Wechsel-Möglichkeit und die Alcon-Wortmarke.
-export default function Header({ view, setView, role, onSwitchRole }) {
+export default function Header({ view, setView, role, onSwitchRole, data, notify }) {
   const tab = (id, label) => (
     <button
       onClick={() => setView(id)}
@@ -50,6 +51,7 @@ export default function Header({ view, setView, role, onSwitchRole }) {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <Backup data={data} canImport={canCreate(role)} notify={notify} />
         <div style={{ textAlign: "right", lineHeight: 1.2 }}>
           <div style={{ fontSize: 10.5, opacity: 0.75 }}>Angemeldet als</div>
           <div style={{ fontSize: 13, fontWeight: 700 }}>{role.label}</div>
