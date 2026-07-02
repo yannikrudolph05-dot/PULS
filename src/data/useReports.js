@@ -14,7 +14,7 @@ import { seedReports } from "./seed.js";
 import { deptLabels } from "../config.js";
 
 // Version hochzählen, wenn sich das Datenmodell ändert -> lädt frische Demo-Daten.
-const STORAGE_KEY = "stoerungsmelder.reports.v3";
+const STORAGE_KEY = "stoerungsmelder.reports.v4";
 
 // Beim Start aus dem localStorage laden, sonst frische Demo-Daten erzeugen.
 function load() {
