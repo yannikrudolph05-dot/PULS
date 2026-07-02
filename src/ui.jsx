@@ -41,7 +41,7 @@ export const Kv = ({ k, v }) => (
 // Panel-Rahmen mit Titelzeile und optionalem Element rechts.
 export function Panel({ title, right, children }) {
   return (
-    <div style={{ background: C.white, border: `1px solid ${BORDER}`, borderRadius: 8, marginBottom: 18 }}>
+    <div className="puls-panel" style={{ background: C.white, border: `1px solid ${BORDER}`, borderRadius: 8, marginBottom: 18 }}>
       <div
         style={{
           display: "flex",

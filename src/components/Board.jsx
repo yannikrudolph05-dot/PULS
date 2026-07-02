@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { C, TEXT, MUTED, BORDER, RED, AMBER } from "../theme.js";
+import { C, TEXT, MUTED, BORDER, RED, AMBER, statusColor } from "../theme.js";
 import { Panel, Button, Chip, StatusBadge, DeptTag } from "../ui.jsx";
 import { ageH, hasOpenQuery } from "../utils/format.js";
 import { PLANT_KEYS, isAnlage, isDept, canCreate, deptLabel } from "../config.js";
@@ -74,10 +74,12 @@ export default function Board({ data, role, onOpen, goNew }) {
             <div
               key={r.id}
               onClick={() => onOpen(r.id)}
+              className="puls-card"
               style={{
                 border: `1px solid ${query ? AMBER : BORDER}`,
+                borderLeft: `4px solid ${statusColor(r.status)}`,
                 borderRadius: 8,
-                padding: 13,
+                padding: "13px 13px 13px 11px",
                 cursor: "pointer",
                 background: "#F7FBFD",
               }}
