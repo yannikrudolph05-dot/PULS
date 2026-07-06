@@ -362,12 +362,14 @@ export default function Detail({ r, data, role, onClose, notify }) {
               </button>
             )}
           </div>
-          <div style={{ borderLeft: `2px solid ${BORDER}`, paddingLeft: 12, marginBottom: 14 }}>
+          <div style={{ position: "relative", paddingLeft: 22, marginBottom: 14 }}>
+            {log.length > 0 && <div style={{ position: "absolute", left: 9, top: 4, bottom: 4, width: 2, background: BORDER }} />}
             {log.map((l, i) => {
               const k = KIND[l.kind] || KIND.note;
               const open = expanded.has(i);
               return (
-                <div key={i} style={{ marginBottom: 8 }}>
+                <div key={i} style={{ position: "relative", marginBottom: 10 }}>
+                  <span style={{ position: "absolute", left: -22, top: 4, width: 10, height: 10, borderRadius: "50%", background: k.color, border: `2px solid ${C.white}`, boxShadow: `0 0 0 1.5px ${BORDER}` }} />
                   <div onClick={() => toggleEntry(i)} style={{ display: "flex", gap: 8, alignItems: "center", cursor: "pointer" }}>
                     <span style={{ fontSize: 10, color: MUTED, width: 10 }}>{open ? "▾" : "▸"}</span>
                     <span style={{ fontSize: 10, fontWeight: 700, background: k.bg, color: k.color, padding: "1px 7px", borderRadius: 8 }}>{k.label}</span>

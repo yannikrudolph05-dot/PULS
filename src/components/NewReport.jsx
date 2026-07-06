@@ -17,6 +17,32 @@ import {
 
 const isEmail = (s) => /\S+@\S+\.\S+/.test(s);
 
+// Kleine Abschnitts-Überschrift, um das Formular in benannte Gruppen zu
+// gliedern (Icon + Label + dezente Trennlinie), statt einer langen Feldliste.
+function SectionHeader({ icon, children }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 700, color: C.navy, textTransform: "uppercase", letterSpacing: 0.4, margin: "4px 0 10px", gridColumn: "1 / -1" }}>
+      {icon}
+      {children}
+    </div>
+  );
+}
+const IconPin = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.navy} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" /><circle cx="12" cy="10" r="3" />
+  </svg>
+);
+const IconAlert = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.navy} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
+  </svg>
+);
+const IconPaperclip = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.navy} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+  </svg>
+);
+
 // Generisches Eingabefeld nach Schema (text/number/select).
 function FieldInput({ fd, value, onChange }) {
   if (fd.kind === "select") {
@@ -157,6 +183,8 @@ export default function NewReport({ plant, setPlant, data, role, onDone, notify 
 
       <Panel title={`Neue Störungsmeldung · ${cfg.label}`}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 20px" }}>
+          <SectionHeader icon={<IconPin />}>Meldungstyp &amp; Zeitpunkt</SectionHeader>
+
           <Field label="Meldungstyp">
             <select value={type} onChange={(e) => switchType(e.target.value)} style={inputStyle}>
               {cfg.types.map((t) => (
@@ -188,12 +216,21 @@ export default function NewReport({ plant, setPlant, data, role, onDone, notify 
             />
           </Field>
 
-          {/* Typ-spezifische Felder generisch aus dem Schema */}
-          {defs.map((fd) => (
-            <Field key={fd.key} label={fd.label}>
-              <FieldInput fd={fd} value={f[fd.key] ?? ""} onChange={(v) => set(fd.key, v)} />
-            </Field>
-          ))}
+          {defs.length > 0 && (
+            <>
+              <div style={{ gridColumn: "1 / -1", borderTop: `1px dashed ${BORDER}`, margin: "6px 0 14px" }} />
+              <SectionHeader icon={<IconAlert />}>Details zum Fehler</SectionHeader>
+              {/* Typ-spezifische Felder generisch aus dem Schema */}
+              {defs.map((fd) => (
+                <Field key={fd.key} label={fd.label}>
+                  <FieldInput fd={fd} value={f[fd.key] ?? ""} onChange={(v) => set(fd.key, v)} />
+                </Field>
+              ))}
+            </>
+          )}
+
+          <div style={{ gridColumn: "1 / -1", borderTop: `1px dashed ${BORDER}`, margin: "6px 0 14px" }} />
+          <SectionHeader icon={<IconPaperclip />}>Beschreibung &amp; Anhänge</SectionHeader>
         </div>
 
         <Field label="Erste Beschreibung / ergriffene Maßnahmen (kann später ergänzt werden)" full>
